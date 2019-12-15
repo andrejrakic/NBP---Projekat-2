@@ -5,16 +5,23 @@ const schema = gql`
     percentage: Float!
   }
 
+  type RAM {
+    usage: Float!
+  }
+
   type Query {
     cpu: CPU
+    ram: RAM
   }
 
   type Mutation {
     cpu: CPU
+    ram: RAM
   }
 
   type Subscription {
     cpu: CPU
+    ram: RAM
   }
 `;
 

@@ -10,6 +10,16 @@ const cpuData = () => {
   };
 };
 
+const ramData = () => {
+  const max = 15700;
+
+  const usage = parseInt(Math.random() * max, 10);
+  return {
+    usage
+  };
+};
+
 module.exports = {
-  cpuData
+  cpuData,
+  ramData
 };
