@@ -14,22 +14,31 @@ const schema = gql`
     percentage: Float!
   }
 
+  type Message {
+    title: String!
+    description: String!
+    color: String!
+  }
+
   type Query {
     cpu: CPU
     ram: RAM
     distribution: [Distribution]
+    messages: [Message]
   }
 
   type Mutation {
     cpu: CPU
     ram: RAM
     distribution: [Distribution]
+    messages: [Message]
   }
 
   type Subscription {
     cpu: CPU
     ram: RAM
     distribution: [Distribution]
+    messages: [Message]
   }
 `;
 
