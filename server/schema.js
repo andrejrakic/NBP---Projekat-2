@@ -20,11 +20,22 @@ const schema = gql`
     color: String!
   }
 
+  type Dps {
+    timestamp: Int!
+    value: Float!
+  }
+
+  type Traffic {
+    total: Int!
+    dps: [Dps]
+  }
+
   type Query {
     cpu: CPU
     ram: RAM
     distribution: [Distribution]
     messages: [Message]
+    traffic: Traffic
   }
 
   type Mutation {
@@ -32,6 +43,7 @@ const schema = gql`
     ram: RAM
     distribution: [Distribution]
     messages: [Message]
+    traffic: Traffic
   }
 
   type Subscription {
@@ -39,6 +51,7 @@ const schema = gql`
     ram: RAM
     distribution: [Distribution]
     messages: [Message]
+    traffic: Traffic
   }
 `;
 

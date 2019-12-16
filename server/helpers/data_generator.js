@@ -19,6 +19,33 @@ const ramData = () => {
   };
 };
 
+const timestamps = Array.from(Array(800).keys())
+  .map(num => ({
+    timestamp: 5 * num,
+    value: parseInt(Math.random() * 100, 10)
+  }))
+  .reverse();
+
+const trafficData = () => {
+  const currentTime = moment();
+  const ts = currentTime.unix();
+  const slice = parseInt(
+    (currentTime.minute() * 60 + currentTime.second()) / 5,
+    10
+  );
+  const dps = timestamps
+    .map(item => ({
+      timestamp: ts - item.timestamp,
+      value: item.value
+    }))
+    .slice(slice, slice + 60);
+  const total = dps.reduce((prev, curr) => prev + curr.value, 0);
+  return {
+    dps,
+    total
+  };
+};
+
 const regionData = () => {
   const min = 10;
   const max = 60;
@@ -61,5 +88,6 @@ module.exports = {
   cpuData,
   ramData,
   messageData,
-  regionData
+  regionData,
+  trafficData
 };

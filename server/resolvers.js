@@ -3,7 +3,8 @@ const {
   cpuData,
   ramData,
   regionData,
-  messageData
+  messageData,
+  trafficData
 } = require("./helpers/data_generator");
 
 const { get, set } = require("./helpers/redis");
@@ -12,7 +13,8 @@ const COMPONENTS = {
   CPU: "cpu",
   RAM: "ram",
   DISTRIBUTION: "distribution",
-  MESSAGES: "messages"
+  MESSAGES: "messages",
+  TRAFFIC: "traffic"
 };
 
 const publishRandomData = async (generator, component) => {
@@ -27,13 +29,15 @@ module.exports = {
     cpu: () => get(COMPONENTS.CPU),
     ram: () => get(COMPONENTS.RAM),
     distribution: () => get(COMPONENTS.DISTRIBUTION),
-    messages: () => get(COMPONENTS.MESSAGES)
+    messages: () => get(COMPONENTS.MESSAGES),
+    traffic:()=>get(COMPONENTS.TRAFFIC)
   },
   Mutation: {
     cpu: () => publishRandomData(cpuData, COMPONENTS.CPU),
     ram: () => publishRandomData(ramData, COMPONENTS.RAM),
     distribution: () => publishRandomData(regionData, COMPONENTS.REGION),
-    messages: () => publishRandomData(messageData, COMPONENTS.MESSAGES)
+    messages: () => publishRandomData(messageData, COMPONENTS.MESSAGES),
+    traffic:()=>publishRandomData(trafficData,COMPONENTS.TRAFFIC)
   },
   Subscription: {
     cpu: {
@@ -47,6 +51,9 @@ module.exports = {
     },
     messages: {
       subscribe: () => pubsub.asyncIterator(COMPONENTS.MESSAGES)
+    },
+    traffic:{
+      subscribe:()=>pubsub.asyncIterator(COMPONENTS.TRAFFIC)
     }
   }
 };
