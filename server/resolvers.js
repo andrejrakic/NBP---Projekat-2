@@ -28,14 +28,14 @@ module.exports = {
   Query: {
     cpu: () => get(COMPONENTS.CPU),
     ram: () => get(COMPONENTS.RAM),
-    distribution: () => get(COMPONENTS.REGION),
+    distribution: () => get(COMPONENTS.DISTRIBUTION),
     messages: () => get(COMPONENTS.MESSAGES),
     traffic: () => get(COMPONENTS.TRAFFIC)
   },
   Mutation: {
     cpu: () => publishRandomData(cpuData, COMPONENTS.CPU),
     ram: () => publishRandomData(ramData, COMPONENTS.RAM),
-    distribution: () => publishRandomData(regionData, COMPONENTS.REGION),
+    distribution: () => publishRandomData(regionData, COMPONENTS.DISTRIBUTION),
     messages: () => publishRandomData(messageData, COMPONENTS.MESSAGES),
     traffic: () => publishRandomData(trafficData, COMPONENTS.TRAFFIC)
   },

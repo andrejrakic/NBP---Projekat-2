@@ -36,13 +36,14 @@ class Distribution extends Component {
     if (error) {
       return <p>Error!</p>;
     }
+    console.log(data);
     return (
       <VictoryPie
         standalone={true}
         animate={{ duration: 500 }}
         height={300}
         data={data.distribution || []}
-        colorScale={["#2c3e50", "#95a5a6" ]}
+        colorScale={["#2c3e50", "#95a5a6"]}
         containerComponent={<VictoryContainer responsive={true} />}
         x="region"
         y="percentage"
