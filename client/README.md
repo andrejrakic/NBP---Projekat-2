@@ -13,6 +13,6 @@ yarn
 yarn start
 ```
 
-Client will be running at [http://localhost:3000](http://localhost:3000). Dashboard picks up initial data from Redis, update itself at intervals.
+Client will be running at [http://localhost:3000](http://localhost:3000).
 
-![Real-time dashboard](client.png)
+
