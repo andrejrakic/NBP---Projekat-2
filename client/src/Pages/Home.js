@@ -29,27 +29,27 @@ export default class Home extends Component {
     return (
       <div>
         <Header />
-        <div style={{ margin: "20px 40px" }}>
-          <h2>Dashboard</h2>
-          <Row type="flex" gutter={8}>
-            <Col span={6}>
-              <CpuUsage />
-              <Label title="Avg CPU Usage" />
-            </Col>
-            <Col span={12}>
-              <Traffic />
-              <Label title="Traffic heartbeat" />
-            </Col>
-            <Col span={6}>
-              <Distribution />
-              <Label title="Region Distribution" />
-            </Col>
-          </Row>
-          <br />
-          <h2>Alerts</h2>
-          <Row type="flex" gutter={8}>
+        <div style={{ margin: "20px 40px" }} className="parent">
+          <div className="div1">
+            <CpuUsage />
+            <Label title="Avg CPU Usage" />
+          </div>
+          <div className="div2">
+            <Traffic />
+            <Label title="Traffic heartbeat" />
+          </div>
+          <div className="div3">
+            <Distribution />
+            <Label title="Region Distribution" />
+          </div>
+          <div className="div4">
+            {" "}
+            <h2>Alerts</h2>
             <Messages />
-          </Row>
+          </div>
+          <div className="div5">
+            <h2>RAM</h2>
+          </div>
         </div>
       </div>
     );

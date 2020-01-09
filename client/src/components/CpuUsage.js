@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { VictoryPie, VictoryLabel } from "victory";
-
 import Loading from "./Loading";
+import { Doughnut } from "react-chartjs-2";
 
 const QUERY = gql`
   query CPU {
@@ -27,7 +27,23 @@ class CpuUsage extends Component {
   }
 
   getData(percent) {
-    return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
+    return [
+      { x: 1, y: percent },
+      { x: 2, y: 100 - percent }
+    ];
+  }
+
+  getData1(percent) {
+    return {
+      labels: ["Used", "Free"],
+      datasets: [
+        {
+          data: [percent, 100 - percent],
+          backgroundColor: ["#E91E63", "#4CAF50"],
+          hoverBackgroundColor: ["#E91E63", "#4CAF50"]
+        }
+      ]
+    };
   }
 
   render() {
@@ -38,44 +54,16 @@ class CpuUsage extends Component {
     if (error) {
       return <p>Error!</p>;
     }
-    return (
-      <svg viewBox="0 0 400 400" width="100%">
-        <VictoryPie
-          standalone={false}
-          animate={{ duration: 500 }}
-          width={400}
-          height={400}
-          data={this.getData(data.cpu.percentage)}
-          innerRadius={120}
-          cornerRadius={25}
-          labels={() => null}
-          style={{
-            data: {
-              fill: d => {
-                const color = d.y > 60 ? "#d35400" : "#27ae60";
-                return d.x === 1 ? color : "transparent";
-              }
-            }
-          }}
-        />
-        <VictoryLabel
-          textAnchor="middle"
-          verticalAnchor="middle"
-          x={200}
-          y={200}
-          text={`${Math.round(data.cpu.percentage)}%`}
-          style={{ fontSize: 45 }}
-        />
-      </svg>
-    );
+    return <Doughnut data={this.getData1(data.cpu.percentage)} />;
   }
 }
 
 const CpuUsageContainer = () => (
-  <div style={{ border: "1px solid #2c3e50", height: 300 }}>
+  <div style={{ border: "1px solid #2c3e50" }} className="chart">
     <Query query={QUERY}>
       {({ subscribeToMore, ...result }) => (
         <CpuUsage
+          className="child"
           {...result}
           subscribeToNewData={() =>
             subscribeToMore({

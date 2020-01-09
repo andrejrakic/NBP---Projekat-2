@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { VictoryPie, VictoryContainer } from "victory";
+import { Pie } from "react-chartjs-2";
 
 import Loading from "./Loading";
 
@@ -36,26 +36,29 @@ class Distribution extends Component {
     if (error) {
       return <p>Error!</p>;
     }
+
+    const data1 = {
+      labels: ["us-east", "us-west"],
+      datasets: [
+        {
+          data: data.distribution.map(item => item.percentage),
+          backgroundColor: ["#FF6384", "#36A2EB"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+        }
+      ]
+    };
+
     console.log(data);
-    return (
-      <VictoryPie
-        standalone={true}
-        animate={{ duration: 500 }}
-        height={300}
-        data={data.distribution || []}
-        colorScale={["#2c3e50", "#95a5a6"]}
-        containerComponent={<VictoryContainer responsive={true} />}
-        x="region"
-        y="percentage"
-      />
-    );
+    return <Pie data={data1} />;
   }
 }
+
+// data.distribution || []
 
 export default class DistributionContainer extends Component {
   render() {
     return (
-      <div style={{ border: "1px solid #2c3e50", height: 300 }}>
+      <div style={{ border: "1px solid #2c3e50" }} className="distribution">
         <Query query={QUERY}>
           {({ subscribeToMore, ...result }) => (
             <Distribution

@@ -18,7 +18,7 @@ export default () => {
           color: "#fff"
         }}
       >
-        Real-time Dashboard demo
+        Server Monitoring
       </h1>
     </div>
   );
