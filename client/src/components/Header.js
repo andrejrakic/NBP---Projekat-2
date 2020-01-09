@@ -5,7 +5,7 @@ export default () => {
     <div
       style={{
         height: 50,
-        background: "#2c3e50",
+        background: "#cf5c36",
         width: "100%"
       }}
     >
@@ -15,7 +15,7 @@ export default () => {
           paddingTop: 5,
           fontSize: "1.7em",
           fontWeight: 400,
-          color: "#fff"
+          color: "#F0B67F"
         }}
       >
         Server Monitoring

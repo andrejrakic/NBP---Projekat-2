@@ -42,8 +42,8 @@ class Distribution extends Component {
       datasets: [
         {
           data: data.distribution.map(item => item.percentage),
-          backgroundColor: ["#FF6384", "#36A2EB"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB"]
+          backgroundColor: ["#FE5F55", "#40434E"],
+          hoverBackgroundColor: ["#FE5F55", "#40434E"]
         }
       ]
     };

@@ -5,39 +5,32 @@ import Loading from "./Loading";
 import { Doughnut } from "react-chartjs-2";
 
 const QUERY = gql`
-  query CPU {
-    cpu {
-      percentage
+  query RAM {
+    ram {
+      usage
     }
   }
 `;
 
 const SUBSCRIPTION = gql`
-  subscription CPU {
-    cpu {
-      percentage
+  subscription RAM {
+    ram {
+      usage
     }
   }
 `;
 
-class CpuUsage extends Component {
+class RamUsage extends Component {
   componentDidMount() {
     this.props.subscribeToNewData();
   }
 
-  getData(percent) {
-    return [
-      { x: 1, y: percent },
-      { x: 2, y: 100 - percent }
-    ];
-  }
-
-  getData1(percent) {
+  getData1(usage) {
     return {
       labels: ["Used", "Free"],
       datasets: [
         {
-          data: [percent, 100 - percent],
+          data: [usage, 16000 - usage],
           backgroundColor: ["#FE5F55", "#40434E"],
           hoverBackgroundColor: ["#FE5F55", "#40434E"]
         }
@@ -53,15 +46,15 @@ class CpuUsage extends Component {
     if (error) {
       return <p>Error!</p>;
     }
-    return <Doughnut data={this.getData1(data.cpu.percentage)} />;
+    return <Doughnut data={this.getData1(data.ram.usage)} />;
   }
 }
 
-const CpuUsageContainer = () => (
+const RamUsageContainer = () => (
   <div style={{ border: "1px solid #2c3e50" }} className="chart">
     <Query query={QUERY}>
       {({ subscribeToMore, ...result }) => (
-        <CpuUsage
+        <RamUsage
           className="child"
           {...result}
           subscribeToNewData={() =>
@@ -79,4 +72,4 @@ const CpuUsageContainer = () => (
   </div>
 );
 
-export default CpuUsageContainer;
+export default RamUsageContainer;

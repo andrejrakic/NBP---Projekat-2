@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Col from "antd/lib/col";
 
 import Loading from "./Loading";
 
@@ -42,18 +41,17 @@ class Message extends Component {
     return (
       <React.Fragment>
         {messages.map(message => (
-          <Col span={6} key={message.title}>
+          <div
+            style={{ border: `1px solid ${message.color}`, height: "100%" }}
+            key={message.title}
+          >
             <div
-              style={{ border: `1px solid ${message.color}`, height: "100%" }}
+              style={{ background: message.color, padding: 5, color: "#fff" }}
             >
-              <div
-                style={{ background: message.color, padding: 5, color: "#fff" }}
-              >
-                <strong>{message.title}</strong>
-              </div>
-              <div style={{ padding: 5 }}>{message.description}</div>
+              <strong>{message.title}</strong>
             </div>
-          </Col>
+            <div style={{ padding: 5 }}>{message.description}</div>
+          </div>
         ))}
       </React.Fragment>
     );
