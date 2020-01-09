@@ -51,7 +51,7 @@ class RamUsage extends Component {
 }
 
 const RamUsageContainer = () => (
-  <div style={{ border: "1px solid #2c3e50" }} className="chart">
+  <div style={{ border: "1px solid #cf5c36" }} className="chart">
     <Query query={QUERY}>
       {({ subscribeToMore, ...result }) => (
         <RamUsage

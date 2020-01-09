@@ -58,7 +58,7 @@ class Distribution extends Component {
 export default class DistributionContainer extends Component {
   render() {
     return (
-      <div style={{ border: "1px solid #2c3e50" }} className="distribution">
+      <div style={{ border: "1px solid #cf5c36" }} className="distribution">
         <Query query={QUERY}>
           {({ subscribeToMore, ...result }) => (
             <Distribution

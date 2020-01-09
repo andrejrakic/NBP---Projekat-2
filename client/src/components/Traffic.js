@@ -86,7 +86,7 @@ class Traffic extends Component {
 export default class TrafficContainer extends Component {
   render() {
     return (
-      <div style={{ border: "1px solid #2c3e50" }}>
+      <div style={{ border: "1px solid #cf5c36" }}>
         <Query query={QUERY}>
           {({ subscribeToMore, ...result }) => (
             <Traffic
