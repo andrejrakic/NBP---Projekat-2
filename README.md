@@ -20,13 +20,12 @@ cd ./server && yarn/npm start
 
 
 ### [`/worker`](./worker)
-*Start worker in order to randomly generate data*
+*Start worker in order to randomly generate data *
 ```
 cd ./worker && yarn/npm start
-
+```
 
 ### [`/client`](./client)
-
 *Start UI client*
 ```
 cd ./client && yarn/npm start
